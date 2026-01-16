@@ -51,7 +51,7 @@ export default function ReviewPage() {
 
         {!hasSelections ? (
           <div className="bg-white rounded-2xl shadow-lg p-12 text-center">
-            <p className="text-gray-600 mb-6">You haven't selected any preferences yet.</p>
+            <p className="text-gray-600 mb-6">You haven&apos;t selected any preferences yet.</p>
             <Link
               href="/stage1"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium bg-pink-500 text-white hover:bg-pink-600 transition-all duration-200"
