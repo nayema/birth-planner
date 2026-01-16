@@ -24,12 +24,18 @@ export function PreferencesProvider({ children }: { children: React.ReactNode })
   }, []);
 
   const updatePreference = useCallback((stageId: string, preferenceId: string, checked: boolean) => {
-    setState((prev) => ({
-      ...prev,
-      [stageId]: prev[stageId as keyof BirthPlanState].map((pref) =>
-        pref.id === preferenceId ? { ...pref, checked } : pref
-      ),
-    }));
+    setState((prev) => {
+      const stagePreferences = prev[stageId as keyof BirthPlanState];
+      if (!stagePreferences || !Array.isArray(stagePreferences)) {
+        return prev;
+      }
+      return {
+        ...prev,
+        [stageId]: stagePreferences.map((pref) =>
+          pref.id === preferenceId ? { ...pref, checked } : pref
+        ),
+      };
+    });
   }, []);
 
   const setBirthInfo = useCallback((birthParent?: string, birthPartner?: string) => {
