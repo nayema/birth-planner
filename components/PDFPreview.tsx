@@ -49,7 +49,7 @@ export function PDFPreview({ state }: PDFPreviewProps) {
   };
 
   return (
-    <div className="bg-white p-8 rounded-lg shadow-lg max-w-4xl mx-auto" id="pdf-content">
+    <div className="bg-white p-8 rounded-lg shadow-lg max-w-4xl mx-auto" id="pdf-content" style={{ width: '100%' }}>
       {/* Header */}
       <div className="mb-8 pb-6 border-b-2 border-pink-200">
         <h1 className="text-3xl font-bold text-gray-900 mb-4">Birth Preferences</h1>

@@ -14,7 +14,7 @@ export default function ReviewPage() {
   const handleDownloadPDF = async () => {
     setIsGenerating(true);
     try {
-      await generatePDF(state);
+      await generatePDF();
     } catch (error) {
       console.error('Error generating PDF:', error);
       alert('Error generating PDF. Please try again.');
