@@ -3,6 +3,8 @@
 import React from 'react';
 import { Preference } from '@/types';
 import * as Icons from 'lucide-react';
+import { Icon } from 'lucide-react';
+import { bottleBaby } from '@lucide/lab';
 
 interface PreferenceCardProps {
   preference: Preference;
@@ -38,6 +40,9 @@ export function PreferenceCard({ preference, onToggle }: PreferenceCardProps) {
     'Bottle': 'Beaker',
   };
   
+  // Special case for Bottle icon - use lab icon
+  const isBottleIcon = preference.icon === 'Bottle';
+
   const iconName = iconMap[preference.icon] || 'Circle';
   const IconComponent = (Icons as any)[iconName] || Icons.Circle;
 
@@ -63,7 +68,11 @@ export function PreferenceCard({ preference, onToggle }: PreferenceCardProps) {
           p-2 rounded-lg
           ${preference.checked ? 'bg-pink-100 text-pink-600' : 'bg-gray-100 text-gray-600'}
         `}>
-          <IconComponent size={30} />
+          {isBottleIcon ? (
+            <Icon iconNode={bottleBaby} size={30} />
+          ) : (
+            <IconComponent size={30} />
+          )}
         </div>
         <span className={`
           flex-1 text-sm leading-relaxed

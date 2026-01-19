@@ -3,6 +3,8 @@
 import React from 'react';
 import { BirthPlanState } from '@/types';
 import * as Icons from 'lucide-react';
+import { Icon } from 'lucide-react';
+import { bottleBaby } from '@lucide/lab';
 
 interface PDFPreviewProps {
   state: BirthPlanState;
@@ -39,13 +41,19 @@ export function PDFPreview({ state }: PDFPreviewProps) {
   const renderPreference = (pref: { id: string; label: string; icon: string; checked: boolean }) => {
     if (!pref.checked) return null;
     
-    const iconName = iconMap[pref.icon] || 'Circle';
-    const IconComponent = (Icons as any)[iconName] || Icons.Circle;
+    // Special case for Bottle icon - use lab icon
+    const isBottleIcon = pref.icon === 'Bottle';
+    const iconName = isBottleIcon ? null : (iconMap[pref.icon] || 'Circle');
+    const IconComponent = isBottleIcon ? null : ((Icons as any)[iconName] || Icons.Circle);
     
     return (
       <div key={pref.id} className="flex items-start gap-3 mb-3">
         <div className="mt-0.5 text-gray-900 flex-shrink-0">
-          <IconComponent size={30} strokeWidth={2} />
+          {isBottleIcon ? (
+            <Icon iconNode={bottleBaby} size={30} strokeWidth={2} />
+          ) : (
+            <IconComponent size={30} strokeWidth={2} />
+          )}
         </div>
         <span className="text-gray-900 leading-relaxed text-sm font-normal">{pref.label}</span>
       </div>
