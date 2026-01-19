@@ -11,6 +11,9 @@ const customJestConfig = {
   testEnvironment: 'jest-environment-jsdom',
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/$1',
+    // Force React to resolve to development build
+    '^react$': require.resolve('react'),
+    '^react-dom$': require.resolve('react-dom'),
   },
   collectCoverageFrom: [
     'app/**/*.{js,jsx,ts,tsx}',
