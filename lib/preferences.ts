@@ -11,7 +11,7 @@ export const stage1Preferences: Preference[] = [
   {
     id: 'expectant-management',
     label: 'Expectant Management: No IVs or antibiotics unless there are signs of infection',
-    icon: 'Droplet',
+    icon: 'Beaker',
     checked: false,
   },
   {
@@ -35,13 +35,13 @@ export const stage1Preferences: Preference[] = [
   {
     id: 'food-water',
     label: 'Free use of food & water',
-    icon: 'Coffee',
+    icon: 'Utensils',
     checked: false,
   },
   {
     id: 'pain-management',
     label: 'Pain Management: TENS machine, counter and acupressure, heat on back, birth ball, birth stool, peanut ball, tub or shower',
-    icon: 'Thermometer',
+    icon: 'Bed',
     checked: false,
   },
 ];
@@ -75,7 +75,7 @@ export const stage2Preferences: Preference[] = [
   {
     id: 'perineal-care',
     label: 'Perineal care: warm compress on perineum, stretches with olive oil',
-    icon: 'Heart',
+    icon: 'Hand',
     checked: false,
   },
   {
@@ -91,7 +91,7 @@ export const stage3Preferences: Preference[] = [
   {
     id: 'physiological-placenta',
     label: 'Expectant management: Physiological birth of placenta up to 30 mins',
-    icon: 'Circle',
+    icon: 'Heart',
     checked: false,
   },
   {
@@ -183,7 +183,7 @@ export const stage4Preferences: Preference[] = [
   {
     id: 'no-formula',
     label: 'No Formula',
-    icon: 'Beaker',
+    icon: 'Bottle',
     checked: false,
   },
   {

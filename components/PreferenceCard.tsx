@@ -18,11 +18,14 @@ export function PreferenceCard({ preference, onToggle }: PreferenceCardProps) {
     'Lightbulb': 'Lightbulb',
     'Activity': 'Activity',
     'Coffee': 'Coffee',
+    'Utensils': 'Utensils',
     'Thermometer': 'Thermometer',
+    'Bed': 'Bed',
     'Scissors': 'Scissors',
     'Megaphone': 'Megaphone',
     'User': 'User',
     'Heart': 'Heart',
+    'Hand': 'Hand',
     'Crown': 'Crown',
     'Circle': 'Circle',
     'Users': 'Users',
@@ -30,6 +33,7 @@ export function PreferenceCard({ preference, onToggle }: PreferenceCardProps) {
     'Baby': 'Baby',
     'Beaker': 'Beaker',
     'Stethoscope': 'Stethoscope',
+    'Footprints': 'Footprints',
     'Eye': 'Eye',
     'Bottle': 'Beaker',
   };
@@ -59,7 +63,7 @@ export function PreferenceCard({ preference, onToggle }: PreferenceCardProps) {
           p-2 rounded-lg
           ${preference.checked ? 'bg-pink-100 text-pink-600' : 'bg-gray-100 text-gray-600'}
         `}>
-          <IconComponent size={20} />
+          <IconComponent size={30} />
         </div>
         <span className={`
           flex-1 text-sm leading-relaxed
