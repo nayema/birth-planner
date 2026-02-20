@@ -80,7 +80,7 @@ function HomeContent() {
         <div className="text-center">
           {canGetStarted ? (
             <Link
-              href={`/stage1?birthType=${encodeURIComponent(selectedBirthType)}`}
+              href={`/stage1?birthType=${encodeURIComponent(selectedBirthType!)}`}
               className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold text-white transition-all duration-200 text-lg bg-pink-500 hover:bg-pink-600 shadow-lg hover:shadow-xl no-underline"
             >
               Get Started

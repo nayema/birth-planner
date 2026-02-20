@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { usePreferences } from '@/lib/store';
 import { PreferenceCard } from '@/components/PreferenceCard';
@@ -10,7 +10,7 @@ import type { BirthType } from '@/types';
 
 const VALID_BIRTH_TYPES: BirthType[] = ['Home Birth', 'C-Section', 'Hospital'];
 
-export default function Stage1Page() {
+function Stage1Content() {
   const searchParams = useSearchParams();
   const { state, updatePreference, setBirthType } = usePreferences();
 
@@ -44,5 +44,13 @@ export default function Stage1Page() {
 
       <NavigationButtons currentStage={1} totalStages={4} />
     </StageLayout>
+  );
+}
+
+export default function Stage1Page() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+      <Stage1Content />
+    </Suspense>
   );
 }
