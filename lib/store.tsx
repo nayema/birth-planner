@@ -1,10 +1,11 @@
 'use client';
 
 import React, { createContext, useContext, useState, useCallback } from 'react';
-import { BirthPlanState, BirthPlanContextType, Preference } from '@/types';
+import { BirthPlanState, BirthPlanContextType, Preference, BirthType } from '@/types';
 import { getInitialPreferences } from '@/lib/preferences';
 
 const initialState: BirthPlanState = {
+  birthType: undefined,
   stage1: getInitialPreferences('stage1'),
   stage2: getInitialPreferences('stage2'),
   stage3: getInitialPreferences('stage3'),
@@ -15,6 +16,10 @@ const BirthPlanContext = createContext<BirthPlanContextType | undefined>(undefin
 
 export function PreferencesProvider({ children }: { children: React.ReactNode }) {
   const [state, setState] = useState<BirthPlanState>(initialState);
+
+  const setBirthType = useCallback((birthType: BirthType) => {
+    setState((prev) => ({ ...prev, birthType }));
+  }, []);
 
   const updateStage = useCallback((stageId: string, preferences: Preference[]) => {
     setState((prev) => ({
@@ -54,6 +59,7 @@ export function PreferencesProvider({ children }: { children: React.ReactNode })
     <BirthPlanContext.Provider
       value={{
         state,
+        setBirthType,
         updateStage,
         updatePreference,
         setBirthInfo,

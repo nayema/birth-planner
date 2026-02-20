@@ -2,59 +2,24 @@
 
 import React from 'react';
 import { BirthPlanState } from '@/types';
-import * as Icons from 'lucide-react';
-import { Icon } from 'lucide-react';
-import { bottleBaby } from '@lucide/lab';
+import { Icon, bottleBaby, getPreferenceIcon } from '@/lib/icons';
 
 interface PDFPreviewProps {
   state: BirthPlanState;
 }
 
 export function PDFPreview({ state }: PDFPreviewProps) {
-  const iconMap: Record<string, keyof typeof Icons> = {
-    'Syringe': 'Syringe',
-    'Droplet': 'Droplet',
-    'Droplets': 'Droplet',
-    'Lightbulb': 'Lightbulb',
-    'Activity': 'Activity',
-    'Coffee': 'Coffee',
-    'Utensils': 'Utensils',
-    'Thermometer': 'Thermometer',
-    'Bed': 'Bed',
-    'Scissors': 'Scissors',
-    'Megaphone': 'Megaphone',
-    'User': 'User',
-    'Heart': 'Heart',
-    'Hand': 'Hand',
-    'Crown': 'Crown',
-    'Circle': 'Circle',
-    'Users': 'Users',
-    'Sprout': 'Sprout',
-    'Baby': 'Baby',
-    'Beaker': 'Beaker',
-    'Stethoscope': 'Stethoscope',
-    'Footprints': 'Footprints',
-    'Eye': 'Eye',
-    'Bottle': 'Beaker',
-  };
-
   const renderPreference = (pref: { id: string; label: string; icon: string; checked: boolean }) => {
     if (!pref.checked) return null;
-    
-    // Special case for Bottle icon - use lab icon
     const isBottleIcon = pref.icon === 'Bottle';
-    
+    const IconComponent = getPreferenceIcon(pref.icon);
     return (
       <div key={pref.id} className="flex items-start gap-3 mb-3">
         <div className="mt-0.5 text-gray-900 flex-shrink-0">
           {isBottleIcon ? (
             <Icon iconNode={bottleBaby} size={30} strokeWidth={2} />
           ) : (
-            (() => {
-              const iconName = iconMap[pref.icon] || 'Circle';
-              const IconComponent = (Icons as any)[iconName] || Icons.Circle;
-              return <IconComponent size={30} strokeWidth={2} />;
-            })()
+            <IconComponent size={30} strokeWidth={2} />
           )}
         </div>
         <span className="text-gray-900 leading-relaxed text-sm font-normal">{pref.label}</span>

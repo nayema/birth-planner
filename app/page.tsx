@@ -1,10 +1,25 @@
 'use client';
 
-import React from 'react';
+import React, { Suspense } from 'react';
 import Link from 'next/link';
-import { ArrowRight, Heart, Baby, Sparkles } from 'lucide-react';
+import { useSearchParams } from 'next/navigation';
+import { ArrowRight, Baby, Home as HomeIcon, Building2, Stethoscope } from 'lucide-react';
+import type { BirthType } from '@/types';
 
-export default function Home() {
+const BIRTH_TYPES: { value: BirthType; label: string; icon: typeof HomeIcon; bgColor: string; iconColor: string }[] = [
+  { value: 'Home Birth', label: 'Home Birth', icon: HomeIcon, bgColor: 'bg-pink-100', iconColor: 'text-pink-600' },
+  { value: 'C-Section', label: 'C-Section', icon: Stethoscope, bgColor: 'bg-blue-100', iconColor: 'text-blue-600' },
+  { value: 'Hospital', label: 'Hospital', icon: Building2, bgColor: 'bg-purple-100', iconColor: 'text-purple-600' },
+];
+
+const VALID_BIRTH_TYPES: BirthType[] = ['Home Birth', 'C-Section', 'Hospital'];
+
+function HomeContent() {
+  const searchParams = useSearchParams();
+  const birthTypeParam = searchParams.get('birthType');
+  const selectedBirthType = VALID_BIRTH_TYPES.includes(birthTypeParam as BirthType) ? (birthTypeParam as BirthType) : null;
+  const canGetStarted = Boolean(selectedBirthType);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-blue-50">
       <div className="container mx-auto px-4 py-16 max-w-4xl">
@@ -26,36 +41,70 @@ export default function Home() {
         </div>
 
         <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6 text-center">
-            How it works
+          <h2 className="text-2xl font-semibold text-gray-900 mb-2 text-center">
+            Where do you plan to give birth?
           </h2>
-          <div className="grid md:grid-cols-4 gap-6">
-            {[
-              { icon: Heart, text: 'Stage 1: Labour', bgColor: 'bg-pink-100', iconColor: 'text-pink-600' },
-              { icon: Baby, text: 'Stage 2: Birthing', bgColor: 'bg-blue-100', iconColor: 'text-blue-600' },
-              { icon: Sparkles, text: 'Stage 3: Placenta', bgColor: 'bg-purple-100', iconColor: 'text-purple-600' },
-              { icon: Baby, text: 'Stage 4: Newborn', bgColor: 'bg-yellow-100', iconColor: 'text-yellow-600' },
-            ].map((stage, idx) => (
-              <div key={idx} className="text-center">
-                <div className={`w-16 h-16 rounded-full ${stage.bgColor} mx-auto mb-3 flex items-center justify-center transition-transform hover:scale-110`}>
-                  <stage.icon className={stage.iconColor} size={24} />
-                </div>
-                <p className="text-sm font-medium text-gray-700">{stage.text}</p>
-              </div>
-            ))}
+          <p className="text-gray-500 text-center mb-8">
+            Choose one option to get started
+          </p>
+          <div className="grid md:grid-cols-3 gap-6">
+            {BIRTH_TYPES.map((option) => {
+              const isSelected = selectedBirthType === option.value;
+              return (
+                <Link
+                  key={option.value}
+                  href={`/?birthType=${encodeURIComponent(option.value)}`}
+                  className={`
+                    flex flex-col items-center p-6 rounded-xl border-2 transition-all duration-200
+                    hover:shadow-md text-left no-underline
+                    ${isSelected
+                      ? 'border-pink-500 bg-pink-50 shadow-md'
+                      : 'border-gray-200 bg-white hover:border-pink-200'
+                    }
+                  `}
+                  aria-current={isSelected ? 'true' : undefined}
+                  aria-label={`Select ${option.label}`}
+                >
+                  <div className={`w-16 h-16 rounded-full ${option.bgColor} mb-4 flex items-center justify-center transition-transform ${isSelected ? 'scale-110' : ''}`}>
+                    <option.icon className={option.iconColor} size={28} />
+                  </div>
+                  <span className={`text-lg font-semibold ${isSelected ? 'text-pink-700' : 'text-gray-800'}`}>
+                    {option.label}
+                  </span>
+                </Link>
+              );
+            })}
           </div>
         </div>
 
         <div className="text-center">
-          <Link
-            href="/stage1"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold bg-pink-500 text-white hover:bg-pink-600 transition-all duration-200 shadow-lg hover:shadow-xl text-lg"
-          >
-            Get Started
-            <ArrowRight size={20} />
-          </Link>
+          {canGetStarted ? (
+            <Link
+              href={`/stage1?birthType=${encodeURIComponent(selectedBirthType)}`}
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold text-white transition-all duration-200 text-lg bg-pink-500 hover:bg-pink-600 shadow-lg hover:shadow-xl no-underline"
+            >
+              Get Started
+              <ArrowRight size={20} />
+            </Link>
+          ) : (
+            <span
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold text-gray-500 transition-all duration-200 text-lg bg-gray-300 cursor-not-allowed"
+              aria-disabled
+            >
+              Get Started
+              <ArrowRight size={20} />
+            </span>
+          )}
         </div>
       </div>
     </div>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-blue-50 flex items-center justify-center">Loading...</div>}>
+      <HomeContent />
+    </Suspense>
   );
 }

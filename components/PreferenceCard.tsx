@@ -1,50 +1,17 @@
 'use client';
 
-import React from 'react';
+import React, { memo } from 'react';
 import { Preference } from '@/types';
-import * as Icons from 'lucide-react';
-import { Icon } from 'lucide-react';
-import { bottleBaby } from '@lucide/lab';
+import { Icon, bottleBaby, getPreferenceIcon } from '@/lib/icons';
 
 interface PreferenceCardProps {
   preference: Preference;
   onToggle: (id: string, checked: boolean) => void;
 }
 
-export function PreferenceCard({ preference, onToggle }: PreferenceCardProps) {
-  // Map icon names to Lucide icons, with fallback
-  const iconMap: Record<string, keyof typeof Icons> = {
-    'Syringe': 'Syringe',
-    'Droplet': 'Droplet',
-    'Droplets': 'Droplet',
-    'Lightbulb': 'Lightbulb',
-    'Activity': 'Activity',
-    'Coffee': 'Coffee',
-    'Utensils': 'Utensils',
-    'Thermometer': 'Thermometer',
-    'Bed': 'Bed',
-    'Scissors': 'Scissors',
-    'Megaphone': 'Megaphone',
-    'User': 'User',
-    'Heart': 'Heart',
-    'Hand': 'Hand',
-    'Crown': 'Crown',
-    'Circle': 'Circle',
-    'Users': 'Users',
-    'Sprout': 'Sprout',
-    'Baby': 'Baby',
-    'Beaker': 'Beaker',
-    'Stethoscope': 'Stethoscope',
-    'Footprints': 'Footprints',
-    'Eye': 'Eye',
-    'Bottle': 'Beaker',
-  };
-  
-  // Special case for Bottle icon - use lab icon
+function PreferenceCardInner({ preference, onToggle }: PreferenceCardProps) {
   const isBottleIcon = preference.icon === 'Bottle';
-
-  const iconName = iconMap[preference.icon] || 'Circle';
-  const IconComponent = (Icons as any)[iconName] || Icons.Circle;
+  const IconComponent = getPreferenceIcon(preference.icon);
 
   return (
     <label
@@ -84,3 +51,5 @@ export function PreferenceCard({ preference, onToggle }: PreferenceCardProps) {
     </label>
   );
 }
+
+export const PreferenceCard = memo(PreferenceCardInner);

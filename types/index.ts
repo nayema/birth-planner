@@ -11,7 +11,10 @@ export interface StagePreferences {
   preferences: Preference[];
 }
 
+export type BirthType = 'Home Birth' | 'C-Section' | 'Hospital';
+
 export interface BirthPlanState {
+  birthType?: BirthType;
   stage1: Preference[];
   stage2: Preference[];
   stage3: Preference[];
@@ -22,6 +25,7 @@ export interface BirthPlanState {
 
 export interface BirthPlanContextType {
   state: BirthPlanState;
+  setBirthType: (birthType: BirthType) => void;
   updateStage: (stageId: string, preferences: Preference[]) => void;
   updatePreference: (stageId: string, preferenceId: string, checked: boolean) => void;
   setBirthInfo: (birthParent?: string, birthPartner?: string) => void;
