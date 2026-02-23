@@ -96,6 +96,15 @@ function HomeContent() {
             </span>
           )}
         </div>
+
+        <div className="mt-16 pt-8 border-t border-purple-200 bg-purple-50/80 rounded-xl px-6 py-6 text-center">
+          <h3 className="text-base font-bold text-gray-600 uppercase tracking-wide mb-2">
+            Privacy Notice
+          </h3>
+          <p className="text-sm text-gray-500 max-w-md mx-auto leading-relaxed">
+            Data is local to this device. No personal health data is stored on our servers. Your plan is yours alone.
+          </p>
+        </div>
       </div>
     </div>
   );
