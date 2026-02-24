@@ -24,7 +24,7 @@ describe('NavigationButtons', () => {
   it('disables back button on first stage', () => {
     render(<NavigationButtons currentStage={1} totalStages={4} />)
     const backButton = screen.getByText('Back').closest('a')
-    expect(backButton).toHaveClass('text-gray-400')
+    expect(backButton).toHaveClass('text-slate-400')
     expect(backButton).toHaveClass('cursor-not-allowed')
   })
 

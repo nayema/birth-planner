@@ -28,10 +28,10 @@ export function PDFPreview({ state }: PDFPreviewProps) {
   };
 
   return (
-    <div className="bg-white p-10 rounded-lg shadow-lg max-w-5xl mx-auto" id="pdf-content" style={{ width: '100%', fontFamily: 'Inter, sans-serif' }}>
+    <div className="bg-white p-10 rounded-lg shadow-sm max-w-5xl mx-auto border border-primary/10" id="pdf-content" style={{ width: '100%', fontFamily: 'Inter, sans-serif' }}>
       {/* Header */}
-      <div className="mb-8 pb-6 border-b-2 border-gray-300">
-        <h1 className="text-4xl font-bold text-gray-900 mb-5" style={{ fontFamily: 'Inter, sans-serif' }}>Birth Preferences</h1>
+      <div className="mb-8 pb-6 border-b-2 border-primary/20">
+        <h1 className="text-4xl font-bold text-primary mb-5" style={{ fontFamily: 'Inter, sans-serif' }}>Birth Preferences</h1>
         {state.birthParent && (
           <p className="text-gray-900 text-lg mb-1" style={{ fontFamily: 'Inter, sans-serif' }}>
             <span className="font-semibold">Birth Parent:</span> {state.birthParent}
@@ -47,32 +47,32 @@ export function PDFPreview({ state }: PDFPreviewProps) {
       {/* Stages Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
         {/* Stage 1 */}
-        <div className="bg-pink-50 rounded-xl p-5 border-2 border-pink-200">
-          <h2 className="font-bold text-xl mb-4 text-gray-900" style={{ fontFamily: 'Inter, sans-serif' }}>Stage 1: Labour</h2>
+        <div className="bg-lavender rounded-xl p-5 border-2 border-primary/20">
+          <h2 className="font-bold text-xl mb-4 text-primary" style={{ fontFamily: 'Inter, sans-serif' }}>Stage 1: Labour</h2>
           <div className="space-y-0">
             {state.stage1.map(renderPreference)}
           </div>
         </div>
 
         {/* Stage 2 */}
-        <div className="bg-blue-50 rounded-xl p-5 border-2 border-blue-200">
-          <h2 className="font-bold text-xl mb-4 text-gray-900" style={{ fontFamily: 'Inter, sans-serif' }}>Stage 2: Birthing</h2>
+        <div className="bg-lavender rounded-xl p-5 border-2 border-primary/20">
+          <h2 className="font-bold text-xl mb-4 text-primary" style={{ fontFamily: 'Inter, sans-serif' }}>Stage 2: Birthing</h2>
           <div className="space-y-0">
             {state.stage2.map(renderPreference)}
           </div>
         </div>
 
         {/* Stage 3 */}
-        <div className="bg-purple-50 rounded-xl p-5 border-2 border-purple-200">
-          <h2 className="font-bold text-xl mb-4 text-gray-900" style={{ fontFamily: 'Inter, sans-serif' }}>Stage 3: Placenta</h2>
+        <div className="bg-lavender rounded-xl p-5 border-2 border-primary/20">
+          <h2 className="font-bold text-xl mb-4 text-primary" style={{ fontFamily: 'Inter, sans-serif' }}>Stage 3: Placenta</h2>
           <div className="space-y-0">
             {state.stage3.map(renderPreference)}
           </div>
         </div>
 
         {/* Stage 4 */}
-        <div className="bg-yellow-50 rounded-xl p-5 border-2 border-yellow-200">
-          <h2 className="font-bold text-xl mb-4 text-gray-900" style={{ fontFamily: 'Inter, sans-serif' }}>Newborn</h2>
+        <div className="bg-lavender rounded-xl p-5 border-2 border-primary/20">
+          <h2 className="font-bold text-xl mb-4 text-primary" style={{ fontFamily: 'Inter, sans-serif' }}>Newborn</h2>
           <div className="space-y-0">
             {state.stage4.map(renderPreference)}
           </div>

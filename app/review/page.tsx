@@ -30,31 +30,31 @@ export default function ReviewPage() {
     state.stage4.some(p => p.checked);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-blue-50">
+    <div className="min-h-screen bg-lavender">
       <div className="container mx-auto px-4 py-8 max-w-6xl">
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center justify-between mb-4">
-            <h1 className="text-3xl font-bold text-gray-900">Review Your Birth Plan</h1>
+            <h1 className="text-3xl font-bold text-primary">Review Your Birth Plan</h1>
             <Link
               href="/stage4"
-              className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
+              className="flex items-center gap-2 px-4 py-2 text-slate-muted hover:text-primary hover:bg-primary/5 rounded-lg transition-colors"
             >
               <ArrowLeft size={18} />
               Back
             </Link>
           </div>
-          <p className="text-gray-600">
+          <p className="text-slate-muted">
             Review your selections and download your birth preferences as a PDF
           </p>
         </div>
 
         {!hasSelections ? (
-          <div className="bg-white rounded-2xl shadow-lg p-12 text-center">
-            <p className="text-gray-600 mb-6">You haven&apos;t selected any preferences yet.</p>
+          <div className="bg-white rounded-2xl shadow-sm p-12 text-center border border-primary/10">
+            <p className="text-slate-muted mb-6">You haven&apos;t selected any preferences yet.</p>
             <Link
               href="/stage1"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium bg-pink-500 text-white hover:bg-pink-600 transition-all duration-200"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium bg-accent text-white hover:bg-accent-hover transition-all duration-200"
             >
               <Edit size={18} />
               Start Planning
@@ -63,11 +63,11 @@ export default function ReviewPage() {
         ) : (
           <>
             {/* PDF Preview */}
-            <div className="bg-white rounded-2xl shadow-lg p-6 mb-6 overflow-x-auto">
+            <div className="bg-white rounded-2xl shadow-sm p-6 mb-6 overflow-x-auto border border-primary/10">
               <PDFPreview state={state} />
             </div>
 
-            {/* Download Button */}
+            {/* Download Button - Warm Coral accent */}
             <div className="flex justify-center">
               <button
                 onClick={handleDownloadPDF}
@@ -76,8 +76,8 @@ export default function ReviewPage() {
                   flex items-center gap-3 px-8 py-4 rounded-lg font-semibold text-white
                   transition-all duration-200 shadow-lg hover:shadow-xl
                   ${isGenerating 
-                    ? 'bg-gray-400 cursor-not-allowed' 
-                    : 'bg-pink-500 hover:bg-pink-600'
+                    ? 'bg-slate-soft cursor-not-allowed' 
+                    : 'bg-accent hover:bg-accent-hover'
                   }
                 `}
               >
@@ -92,7 +92,7 @@ export default function ReviewPage() {
                 <Link
                   key={stage}
                   href={`/stage${stage}`}
-                  className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-pink-600 hover:bg-pink-50 rounded-lg transition-colors"
+                  className="px-4 py-2 text-sm font-medium text-slate-muted hover:text-primary hover:bg-primary/5 rounded-lg transition-colors"
                 >
                   Edit Stage {stage}
                 </Link>

@@ -48,7 +48,7 @@ describe('PreferenceCard', () => {
       <PreferenceCard preference={checkedPreference} onToggle={mockOnToggle} />
     )
     const label = container.querySelector('label')
-    expect(label).toHaveClass('border-pink-300', 'bg-pink-50')
+    expect(label).toHaveClass('border-primary', 'bg-primary/5')
   })
 
   it('applies correct styling when unchecked', () => {
