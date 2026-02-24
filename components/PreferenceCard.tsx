@@ -1,6 +1,6 @@
 'use client';
 
-import React, { memo } from 'react';
+import React from 'react';
 import { Preference } from '@/types';
 import { Icon, bottleBaby, getPreferenceIcon } from '@/lib/icons';
 
@@ -52,4 +52,4 @@ function PreferenceCardInner({ preference, onToggle }: PreferenceCardProps) {
   );
 }
 
-export const PreferenceCard = memo(PreferenceCardInner);
+export const PreferenceCard = PreferenceCardInner;

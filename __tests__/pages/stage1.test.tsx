@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import Stage1Page from '@/app/stage1/page'
 import { PreferencesProvider } from '@/lib/store'
 
@@ -38,5 +38,22 @@ describe('Stage1Page', () => {
     renderWithProvider(<Stage1Page />)
     expect(screen.getByText('Back')).toBeInTheDocument()
     expect(screen.getByText('Next')).toBeInTheDocument()
+  })
+
+  it('enables Next button when at least one preference is selected', async () => {
+    renderWithProvider(<Stage1Page />)
+    const nextButton = screen.getByText('Next')
+    // Initially disabled - Next is inside a span
+    expect(nextButton.closest('span')).toHaveClass('cursor-not-allowed')
+
+    const firstCheckbox = screen.getAllByRole('checkbox')[0]
+    fireEvent.click(firstCheckbox)
+
+    // After selecting, Next should become a link (wait for state update)
+    await waitFor(() => {
+      const link = screen.getByText('Next').closest('a')
+      expect(link).toBeInTheDocument()
+      expect(link).toHaveAttribute('href', '/stage2')
+    })
   })
 })
