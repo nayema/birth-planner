@@ -22,6 +22,11 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
+        {/* Critical fallback – ensures base styles load even if Tailwind bundle delays */}
+        <style dangerouslySetInnerHTML={{ __html: `
+          html,body{background:#F3F0FF!important;font-family:Inter,sans-serif!important;color:#1e293b!important;margin:0;padding:0;-webkit-font-smoothing:antialiased}
+          a{color:inherit!important;text-decoration:none!important}
+        `}} />
       </head>
       <body className="antialiased flex flex-col min-h-screen">
         <PreferencesProvider>

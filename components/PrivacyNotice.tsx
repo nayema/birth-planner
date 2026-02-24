@@ -4,7 +4,7 @@ export function PrivacyNotice() {
       <h3 className="text-xs font-bold text-slate-muted uppercase tracking-wider mb-3">
         Privacy Notice
       </h3>
-      <p className="text-xs text-slate-muted mx-auto px-4 max-w-4xl sm:whitespace-nowrap">
+      <p className="text-xs text-slate-muted max-w-md mx-auto leading-relaxed px-4">
         Data is local to this device. No personal health data is stored on our servers. Your plan is yours alone.
       </p>
     </div>
