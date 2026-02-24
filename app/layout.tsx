@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { PreferencesProvider } from "@/lib/store";
+import { PrivacyNotice } from "@/components/PrivacyNotice";
 
 export const metadata: Metadata = {
   title: "Birth Planner - Your Birth Preferences Guide",
@@ -22,9 +23,10 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="antialiased">
+      <body className="antialiased flex flex-col min-h-screen">
         <PreferencesProvider>
-          {children}
+          <main className="flex-1">{children}</main>
+          <PrivacyNotice />
         </PreferencesProvider>
       </body>
     </html>

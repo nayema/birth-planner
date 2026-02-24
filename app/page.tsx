@@ -104,16 +104,6 @@ function HomeContent() {
         <blockquote className="text-center text-primary italic text-sm md:text-base max-w-2xl mx-auto mb-12 leading-relaxed">
           &ldquo;Empower yourself with information and advocate for the birth experience you deserve through informed consent.&rdquo;
         </blockquote>
-
-        {/* Privacy notice - Muted slate */}
-        <div className="pt-8 border-t border-slate-200 text-center">
-          <h3 className="text-xs font-bold text-slate-muted uppercase tracking-wider mb-3">
-            Privacy Notice
-          </h3>
-          <p className="text-xs text-slate-muted max-w-md mx-auto leading-relaxed">
-            Data is local to this device. No personal health data is stored on our servers. Your plan is yours alone.
-          </p>
-        </div>
       </div>
     </div>
   );
